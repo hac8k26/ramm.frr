@@ -1,0 +1,508 @@
+/* ===== WORK PAGE ===== */
+
+/* nav-logo override for anchor tag */
+a.nav-logo {
+    text-decoration: none;
+}
+
+
+/* ---- PAGE HEADER ---- */
+.work-page-header {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+}
+
+.wph-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+/* ---- LEFT ---- */
+.wph-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 64px 80px;
+    gap: 32px;
+}
+
+/* animated status label */
+.wph-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+
+.wph-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34,197,94,0.5);
+    animation: dotPulse 2s ease-out infinite;
+}
+
+@keyframes dotPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+.wph-title {
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0;
+}
+
+.wph-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+}
+
+.wph-sub {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    max-width: 380px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* stats row */
+.wph-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.wph-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.wph-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.wph-stat-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.wph-stat-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+}
+
+.wph-text { margin-bottom: 36px; }
+
+/* ---- FILTER BUTTONS ---- */
+.wph-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--chip);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+}
+
+.filter-btn:hover {
+    background: var(--chip-hover);
+    color: var(--ink);
+}
+
+.filter-btn.active {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+}
+
+/* ---- RIGHT — PEEP STICKER CARDS ---- */
+.wph-right {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--surface);
+    /* large diagonal stripe pattern */
+    background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 28px,
+        var(--border) 28px,
+        var(--border) 29px
+    );
+}
+
+/* fade edges so stripes don't feel harsh */
+.wph-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 50%, transparent 40%, var(--surface) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ---- PEEP CARDS ---- */
+.peep-card {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 24px rgba(26,26,24,0.08), 0 1px 4px rgba(26,26,24,0.06);
+    z-index: 2;
+    cursor: default;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                box-shadow 0.35s ease;
+}
+
+.peep-card:hover {
+    box-shadow: 0 16px 48px rgba(26,26,24,0.14), 0 2px 8px rgba(26,26,24,0.08);
+    z-index: 10;
+}
+
+.peep-card-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    background: var(--chip);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* individual positions & tilts */
+.pc-1 {
+    top: 12%;
+    left: 8%;
+    transform: rotate(-6deg);
+    animation: cardFloat 5s ease-in-out infinite;
+}
+.pc-1:hover { transform: rotate(0deg) scale(1.06); }
+
+.pc-2 {
+    top: 28%;
+    left: 44%;
+    transform: rotate(4deg);
+    animation: cardFloat 4s ease-in-out infinite 0.7s;
+}
+.pc-2:hover { transform: rotate(0deg) scale(1.06); }
+
+.pc-3 {
+    top: 55%;
+    left: 18%;
+    transform: rotate(-3deg);
+    animation: cardFloat 6s ease-in-out infinite 1.4s;
+}
+.pc-3:hover { transform: rotate(0deg) scale(1.06); }
+
+@keyframes cardFloat {
+    0%, 100% { translate: 0 0; }
+    50%       { translate: 0 -10px; }
+}
+
+/* ---- PROJECTS LIST ---- */
+.work-page-grid {
+    background-color: var(--bg);
+    padding: 80px 64px 120px;
+    border-bottom: 1px solid var(--border);
+}
+
+.wpg-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ---- PROJECT ITEM ---- */
+.wp-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    align-items: center;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s ease;
+}
+
+.wp-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wp-item:hover {
+    background: var(--surface);
+}
+
+.wp-item-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.wp-item-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wp-item-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.wp-item:hover .wp-item-title {
+    color: var(--ink-soft);
+}
+
+.wp-item-desc {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin: 0;
+}
+
+.wp-item-tags {
+    display: flex;
+    gap: 6px;
+}
+
+.wp-item-tags span {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--chip);
+    color: var(--ink-soft);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.wp-item-links {
+    display: flex;
+    gap: 8px;
+}
+
+.wp-item-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--chip);
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.wp-item-link:hover {
+    background: var(--ink);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+/* Hidden filtered items */
+.wp-item.hidden { display: none; }
+
+/* ---- STAGGER DELAYS ---- */
+.wp-item:nth-child(1) { transition-delay: 0.05s; }
+.wp-item:nth-child(2) { transition-delay: 0.12s; }
+.wp-item:nth-child(3) { transition-delay: 0.19s; }
+.wp-item:nth-child(4) { transition-delay: 0.26s; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+    .wph-inner            { grid-template-columns: 1fr; min-height: auto; }
+    .wph-right            { display: none; }
+    .wph-left             { padding: 120px 40px 60px; }
+    .work-page-grid       { padding: 60px 40px 100px; }
+    .wp-item              { grid-template-columns: 50px 1fr auto; gap: 20px; padding: 24px 0; }
+    .wp-item-tags         { display: none; }
+}
+
+@media (max-width: 640px) {
+    .work-page-header {
+        min-height: auto;
+        padding: 0;
+    }
+    
+    .wph-inner {
+        min-height: auto;
+    }
+    
+    .wph-left { 
+        padding: 100px 20px 40px;
+        gap: 20px;
+    }
+    
+    .wph-label {
+        font-size: 0.68rem;
+    }
+    
+    .wph-title { 
+        font-size: 2.6rem;
+        line-height: 1.1;
+    }
+    
+    .wph-sub {
+        font-size: 0.85rem;
+        max-width: 100%;
+        line-height: 1.65;
+    }
+    
+    .wph-stats {
+        width: 100%;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px 16px;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        gap: 0;
+    }
+    
+    .wph-stat {
+        align-items: center;
+        text-align: center;
+        flex: 1;
+    }
+    
+    .wph-stat-num {
+        font-size: 1.8rem;
+    }
+    
+    .wph-stat-label {
+        font-size: 0.64rem;
+    }
+    
+    .wph-stat-divider { 
+        width: 1px;
+        height: 40px;
+        background: var(--border);
+    }
+    
+    .wph-filters {
+        width: 100%;
+    }
+    
+    .filter-btn {
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .work-page-grid { 
+        padding: 32px 20px 80px;
+        background: var(--surface);
+    }
+    
+    /* Mobile card layout */
+    .wp-list { gap: 12px; }
+    
+    .wp-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--white);
+        margin-bottom: 0;
+    }
+    
+    .wp-item:hover {
+        background: var(--white);
+        box-shadow: 0 8px 24px rgba(26,26,24,0.08);
+    }
+    
+    .wp-item-num {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        text-align: right;
+        font-size: 0.68rem;
+    }
+    
+    .wp-item-main {
+        gap: 8px;
+    }
+    
+    .wp-item-title {
+        font-size: 1.3rem;
+    }
+    
+    .wp-item-desc {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+    
+    .wp-item-links {
+        gap: 8px;
+        margin-top: 4px;
+    }
+    
+    .wp-item-link {
+        width: 44px;
+        height: 44px;
+        font-size: 0.85rem;
+    }
+}
