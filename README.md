@@ -17,8 +17,13 @@
 <br/>
 
 ![Status](https://img.shields.io/badge/Status-Live-22c55e?style=flat-square)
-![License](https://img.shields.io/badge/License-Free-1a1a18?style=flat-square)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-ramfr.vercel.app-1a1a18?style=flat-square&logo=vercel)](https://ramfr.vercel.app/)
+![License](https://img.shields.io/badge/License-Free-9a9a90?style=flat-square)
 ![No Framework](https://img.shields.io/badge/Framework-None-9a9a90?style=flat-square)
+
+<br/>
+
+**[🌐 View Live →](https://ramfr.vercel.app/)**
 
 </div>
 
@@ -29,6 +34,8 @@
 <div align="center">
 
 > A minimal, modern frontend developer portfolio — no frameworks, no build tools, just clean code.
+>
+> 🔗 **[ramfr.vercel.app](https://ramfr.vercel.app/)**
 
 </div>
 
